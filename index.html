@@ -399,6 +399,70 @@ function onOpen() {
 </ol>
 </div>
 
+<!-- 回答の質を上げるコツ -->
+<div class="card">
+<h2>✨ 回答の質を上げるコツ</h2>
+<p>AIの出力は、コード内の <code>TEACHER_PERSONA</code> という部分で細かくコントロールできます。<br><strong>話し口調・改行・文字数・構成・禁止ワード</strong>など、かなり自由にカスタマイズ可能です！</p>
+
+<h3>🎛️ 調整できるポイント一覧</h3>
+<table>
+<tr><th>調整項目</th><th>書き方の例</th><th>効果</th></tr>
+<tr><td><strong>口調・話し方</strong></td><td>「です・ます調で書く」<br>「タメ口で親しみやすく」<br>「ビジネス敬語で丁寧に」</td><td>フィードバックの雰囲気が変わる</td></tr>
+<tr><td><strong>文字数</strong></td><td>「400文字で必ず完結させる」<br>「200〜300文字程度」</td><td>短すぎ・長すぎを防止</td></tr>
+<tr><td><strong>改行ルール</strong></td><td>「2〜3文ごとに改行する」<br>「段落を3つに分ける」</td><td>読みやすさが向上</td></tr>
+<tr><td><strong>構成の指定</strong></td><td>「1.共感 → 2.アドバイス → 3.背中押し」</td><td>毎回同じ流れで安定した出力</td></tr>
+<tr><td><strong>禁止ワード</strong></td><td>「"一緒に頑張りましょう" は使わない」</td><td>テンプレ感のある文を排除</td></tr>
+<tr><td><strong>書き出しルール</strong></td><td>「最初の一文はアドバイスか問いかけで始める」</td><td>ありきたりな書き出しを防止</td></tr>
+<tr><td><strong>具体性の指示</strong></td><td>「回答者の業種に触れた具体例を入れる」</td><td>一人ひとりに合った内容に</td></tr>
+<tr><td><strong>絵文字</strong></td><td>「絵文字は使わない」or「適度に絵文字を使う」</td><td>読者層に合わせた見た目に</td></tr>
+</table>
+
+<h3>📝 カスタマイズの実例</h3>
+<p>コード内の <code>TEACHER_PERSONA</code> を書き換えるだけでOKです。以下は書き換え例：</p>
+
+<div class="chat-example">
+<p><strong>例1：もっとカジュアルにしたい場合</strong></p>
+<p style="background:#e2e8f0;padding:14px;border-radius:8px;margin-top:8px;font-size:.9em">
+口調のルール：<br>
+- 友達に話しかけるようなフランクな口調<br>
+- 「〜だよね！」「〜してみて！」のような話し言葉<br>
+- 堅い敬語は使わない
+</p>
+</div>
+
+<div class="chat-example">
+<p><strong>例2：フォーマルなビジネス文書にしたい場合</strong></p>
+<p style="background:#e2e8f0;padding:14px;border-radius:8px;margin-top:8px;font-size:.9em">
+口調のルール：<br>
+- 「です・ます」調の丁寧なビジネス敬語<br>
+- 句読点を正確に使い、1文を60文字以内に収める<br>
+- 箇条書きで3つのポイントを提示する形式
+</p>
+</div>
+
+<div class="chat-example">
+<p><strong>例3：改行・見た目を細かく指定する場合</strong></p>
+<p style="background:#e2e8f0;padding:14px;border-radius:8px;margin-top:8px;font-size:.9em">
+フォーマット：<br>
+- 全体を3段落に分ける（共感 → 提案 → 締め）<br>
+- 各段落の間に空行を入れる<br>
+- 1段落は2〜3文まで<br>
+- 箇条書きや記号は使わず、自然な文章で書く
+</p>
+</div>
+
+<div class="alert alert-tip">💡 <strong>AIチャットに書き換えてもらうのもOK！</strong><br>「このTEACHER_PERSONAの口調を、もっと〇〇な感じに変えて」とClaudeやGeminiに頼めば、すぐに書き換えてくれます。</div>
+
+<h3>⚡ 「良い例・悪い例」を入れると精度が劇的に上がる</h3>
+<p>テンプレートコードにはすでに入っていますが、<strong>実際の回答データを使った良い例・悪い例</strong>をTEACHER_PERSONAに含めると、AIの出力品質が大幅に向上します。</p>
+<ul>
+<li><strong>悪い例を入れる理由</strong> ── 「こういう文は書くな」とAIに明示できる</li>
+<li><strong>良い例を入れる理由</strong> ── 「こういう文を目指せ」という手本になる</li>
+<li><strong>例は3〜5個</strong>あると、AIがパターンを学習して安定した出力になります</li>
+</ul>
+<div class="alert alert-info">ℹ️ 良い例・悪い例の追加もAIチャットに頼めます。「私のスクールに合った良い例・悪い例を5個作って」と送ればOK！</div>
+</div>
+
 <!-- トラブルシューティング -->
 <div class="card">
 <h2>❓ トラブルシューティング</h2>
@@ -428,7 +492,23 @@ AIフィードバック自動生成マニュアル ── 最終更新：2026年
 </div>
 
 <script>
-// コード埋め込み済み
+// コードファイルを読み込んで表示
+fetch('manual_images/code.js')
+  .then(r => r.text())
+  .then(code => {
+    document.getElementById('gas-code').textContent = code;
+  })
+  .catch(() => {
+    // fetch失敗時は直接埋め込み（ローカルファイルの場合）
+    var xhr = new XMLHttpRequest();
+    xhr.open('GET', 'manual_images/code.js', true);
+    xhr.onload = function() {
+      if (xhr.status === 200 || xhr.status === 0) {
+        document.getElementById('gas-code').textContent = xhr.responseText;
+      }
+    };
+    xhr.send();
+  });
 
 function copyCode(btn) {
   var code = document.getElementById('gas-code').textContent;
